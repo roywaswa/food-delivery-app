@@ -23,3 +23,8 @@ This web app connects the customer to the restaurant or fast food delivery syste
 
 # Research on Technology
 ## Headless CMS
+## SITEMAP
+### PROJECT SITEMAP DESIGN
+![sITEMAP DETAILS](https://user-images.githubusercontent.com/109720071/184429006-fdab5339-206c-4b6c-bdee-37253409bd7b.jpg)
+![SITEMAP STRUCTURES](https://user-images.githubusercontent.com/109720071/184429013-bfdee07a-f84a-4616-ac9e-c83e26677c19.jpg)
+
