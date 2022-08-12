@@ -1,0 +1,43 @@
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'plugin:vue/vue3-essential',
+    'airbnb-base',
+    'prettier',
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: [
+    'vue',
+  ],
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'error',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-unused-vars': 'off',
+    'no-param-reassign': 'off',
+    'no-shadow': 'off',
+    'no-use-before-define': 'off',
+    'no-useless-escape': 'off',
+    'no-var': 'off',
+    'no-underscore-dangle': 'off',
+    'no-unused-expressions': 'off',
+    'no-unused-vars': 'off',
+    'no-plusplus': 'off',
+    'no-restricted-syntax': 'off',
+    'no-await-in-loop': 'off',
+    'no-dupe-class-members': 'off',
+    'no-dupe-keys': 'off',
+    'no-duplicate-case': 'off',
+    'no-empty': 'off',
+    'no-empty-pattern': 'off',
+    'no-extra-semi': 'off',
+    'no-fallthrough': 'off',
+    'no-global-assign': 'off',
+    'no-invalid-regexp': 'off',noConsole: 'off',
+  },
+};
