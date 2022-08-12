@@ -1,10 +1,21 @@
-<script setup>
+<script>
+import { defineComponent } from 'vue'
+import FooterSection from './components/FooterSection.vue'
+import HeaderSection from './components/HeaderSection.vue'
 
+export default defineComponent({
+  setup() {
+    
+  },
+  components: { HeaderSection, FooterSection }
+})
 </script>
 
 <template>
-  <div id="app">
-    <h1>HELLO VUE WORLD</h1>
+  <div>
+    <header-section/>
+    <router-view/>
+    <footer-section/>
   </div>
 </template>
 
