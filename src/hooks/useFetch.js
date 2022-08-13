@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 export function useFetch(path) {
   const data = ref(null);
-  const loading = ref(false);
+  const loading = ref(true);
   const error = ref(null);
   const host = import.meta.env.MODE === "development" ? "http://localhost:1337" : import.meta.env.VITE_STRAPI_URL;
 
