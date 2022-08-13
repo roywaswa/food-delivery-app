@@ -16,7 +16,7 @@ module.exports = {
     'vue',
   ],
   rules: {
-    'no-console': import.meta.env.MODE === 'production' ? 'error' : 'error',
+    'no-console': 'error',
     'no-debugger': import.meta.env.MODE === 'production' ? 'error' : 'off',
     'no-unused-vars': 'off',
     'no-param-reassign': 'off',
