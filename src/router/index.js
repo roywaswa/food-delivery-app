@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import(/* webpackChunkName: "foods" */ "../views/FoodsPage.vue"),
     },
     {
+      path: "/foods/:id",
+      name: "foods-details",
+      component: () => import(/* webpackChunkName: "foods" */ "../views/FoodDetailsPage.vue"),
+    },
+    {
       path: "/cart",
       name: "cart",
       component: () => import(/* webpackChunkName: "cart" */ "../views/CartPage.vue"),
