@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from "@vue/runtime-core"
+import { ref } from "@vue/runtime-core"
 
 const props = defineProps({
   food: {
@@ -9,10 +9,24 @@ const props = defineProps({
 })
 const host = import.meta.env.MODE === "development" ? "http://localhost:1337" : import.meta.env.VITE_STRAPI_URL;
 const imageUrl = `${host}${props.food.attributes.bannerImage.data.attributes.formats.thumbnail.url}`
+const count = ref(1)
 
-onMounted(() => {
-  
-})
+const addToCart = () => {
+  const foodItem = {
+    id: props.food.id,
+    name: props.food.attributes.Name,
+    price: props.food.attributes.Price * count.value,
+    quantity: count.value,
+    imageUrl: imageUrl
+  }
+  const localCart = JSON.parse(localStorage.getItem("cart")) || []
+  localStorage.setItem(`cart`, JSON.stringify([...localCart, foodItem]))
+}
+
+const countInCart = (value) => {
+  count.value += value;
+}
+
 </script>
 
 <template>
@@ -22,15 +36,15 @@ onMounted(() => {
     </div>
     <div class="food-details">
       <h3>{{ props.food.attributes.Name }}</h3>
-      <p>Ksh.{{ props.food.attributes.Price }}</p>
+      <p>Ksh.{{ props.food.attributes.Price * count }}</p>
     </div>
     <div class="order-controls">
       <div class="quantity-control">
-        <button>-</button>
-        <span>1</span>
-        <button>+</button>
+        <button :disabled="count==1" @click="countInCart(-1)">-</button>
+        <span>{{count}}</span>
+        <button @click="countInCart(+1)">+</button>
       </div>
-      <button>Add to cart</button>
+      <button @click="addToCart">Add to cart</button>
     </div>
   </div>
 </template>
