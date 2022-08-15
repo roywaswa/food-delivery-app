@@ -12,11 +12,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <header-section/>
-    <router-view/>
-    <footer-section/>
-  </div>
+  <header-section />
+  <router-view />
+  <footer-section />
 </template>
 
 <style scoped>

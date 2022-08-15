@@ -17,17 +17,25 @@ onMounted(() => { fetchData() })
   <div v-if="loading">
     <p>Loading...</p>
   </div>
-  <div v-else>
-
-    <div class="food-card" :key="food.attributes.foodslug" v-for="food in foods">
-      <router-link :to="'/foods/'+food.id">
-        <FoodCard :food="food" />
-      </router-link>
-    </div>
+  <div class="food-cards-container" v-else>
+    <FoodCard 
+      v-for="food in foods"
+      :key="food.attributes.foodslug"
+      :food="food"  
+      class="food-card"/>
   </div>
 </template>
 
 
 
-<style>
+<style lang="scss">
+  .food-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
 </style>

@@ -16,23 +16,62 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="banner-image">
-    <img :src="imageUrl" />
-  </div>
-  <div class="food-details">
-    <h3>{{ props.food.attributes.Name }}</h3>
-    <p>Ksh.{{ props.food.attributes.Price }}</p>
-  </div>
-  <div class="order-controls">
-    <div class="quantity-control">
-      <button>-</button>
-      <span>1</span>
-      <button>+</button>
+  <div class="food-card">
+    <div class="banner-image">
+      <img :src="imageUrl" />
     </div>
-    <button>Add to cart</button>
+    <div class="food-details">
+      <h3>{{ props.food.attributes.Name }}</h3>
+      <p>Ksh.{{ props.food.attributes.Price }}</p>
+    </div>
+    <div class="order-controls">
+      <div class="quantity-control">
+        <button>-</button>
+        <span>1</span>
+        <button>+</button>
+      </div>
+      <button>Add to cart</button>
+    </div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+  .food-card {
+    border: 1px solid rgb(189, 189, 189);
+    border-radius: 8px;
+    overflow: hidden;
+    width: max(400px, 33%);
+    min-width: 400px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: auto 1fr;
 
+    .banner-image {
+      grid-row-start: 1;
+      grid-row-end: 3;
+
+      img {
+        width: 200px;
+        height: 200px;
+        object-fit: fill;
+      }
+    }
+    .food-details {
+      padding: 1rem 1rem 0 1rem;
+    }
+    .order-controls {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      gap: 0.5rem;
+      padding: 0 1rem 1rem 1rem;
+
+      .quantity-control {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
 </style>
