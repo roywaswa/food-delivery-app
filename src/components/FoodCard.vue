@@ -8,11 +8,10 @@ const props = defineProps({
   }
 })
 const host = import.meta.env.MODE === "development" ? "http://localhost:1337" : import.meta.env.VITE_STRAPI_URL;
-// const host = import.meta.env.VITE_STRAPI_URL;
 const imageUrl = `${host}${props.food.attributes.bannerImage.data.attributes.formats.thumbnail.url}`
 
 onMounted(() => {
-  console.log(props.food.attributes)
+  
 })
 </script>
 
