@@ -1,27 +1,18 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', {
   state: () => {
     return {
-      storeUser: null,
+      storeUser: null
     }
-  } ,
+  },
   mutations: {
-    setUser(state, user) {
-      state.user = user;
-    },
+    setUser (state, user) {
+      state.user = user
+    }
   },
   actions: {
-    
-  },
+
+  }
 
 })
-  
-
-
-
-
-
-
-
-
