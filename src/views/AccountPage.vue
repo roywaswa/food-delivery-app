@@ -1,22 +1,20 @@
 <script setup>
 import { ref } from 'vue';
+import { storeToRefs } from "pinia";
 import AuthLogin from '../components/AuthLogin.vue';
 import AuthRegister from '../components/AuthRegister.vue';
+import AuthPage from '../components/AuthPage.vue';
+import { useAuthStore } from '../app/store.pinia';
+import Dashboard from '../components/Dashboard.vue';
 
-const authAction = ref("login");
-const loginUser = (some) => {
-  console.log(some);
-}
+const {storeUser} = storeToRefs(useAuthStore())
+
 </script>
 
 <template>
   <div class="page">
-    <div class="page-title">
-      <h3>{{authAction.toUpperCase()}}</h3>
-    </div>
-    <AuthLogin @register="authAction = 'register'" v-if="authAction == 'login'" />
-    <AuthRegister @login="authAction = 'login'" v-else-if="authAction == 'register'" />
-    <div v-else class="error">ERROR</div>
+    <AuthPage v-if="!storeUser" />
+    <Dashboard v-else />
   </div>
 </template>
 
