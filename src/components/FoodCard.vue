@@ -1,44 +1,80 @@
-<script setup>
-import { ref } from "@vue/runtime-core"
+<script setup lang="ts">
+import { onMounted, ref } from "@vue/runtime-core"
+import { useRoute } from "vue-router"
 
+const router = useRoute()
 const props = defineProps({
   food: {
     type: Object,
     required: true
   }
 })
-const host = import.meta.env.MODE === "development" ? "http://localhost:1337" : import.meta.env.VITE_STRAPI_URL;
-const imageUrl = `${host}${props.food.attributes.bannerImage.data.attributes.formats.thumbnail.url}`
-const count = ref(1)
+const count = ref(props.food.quantity)
+const removed = ref(false)
+const isCartPage = ref(false)
+
 
 const addToCart = () => {
   const foodItem = {
     id: props.food.id,
-    name: props.food.attributes.Name,
-    price: props.food.attributes.Price * count.value,
+    name: props.food.name,
+    price: props.food.price,
     quantity: count.value,
-    imageUrl: imageUrl
+    imageUrl: props.food.imageUrl,
+    total: props.food.price * count.value
   }
-  const localCart = JSON.parse(localStorage.getItem("cart")) || []
-  localStorage.setItem(`cart`, JSON.stringify([...localCart, foodItem]))
+  const localCart_old = JSON.parse(localStorage.getItem("cart")) || []
+  const localCart_new = []
+  // find foodItem in localstorage
+  localCart_old.forEach(item => {
+    if (item.id === foodItem.id) {
+      item.quantity = foodItem.quantity
+      item.total = foodItem.total
+    }
+    localCart_new.push(item)
+  });
+  // if foodItem not in localstorage, add it
+  if (!localCart_old.find(item => item.id === foodItem.id)) {
+    localCart_new.push(foodItem)
+  } 
+  localStorage.setItem("cart", JSON.stringify(localCart_new))
+}
+
+const removeFromCart = () => {
+  const localCart_old = JSON.parse(localStorage.getItem("cart")) || []
+  const localCart_new = []
+  localCart_old.forEach(item => {
+    if (item.id !== props.food.id) {
+      localCart_new.push(item)
+    }
+  })
+  localStorage.setItem("cart", JSON.stringify(localCart_new))
+  removed.value = true
 }
 
 const countInCart = (value) => {
   count.value += value;
 }
 
+onMounted(() => {
+  if (router.name === "cart") {
+    isCartPage.value = true
+  }
+})
+
 </script>
 
 <template>
-  <div class="food-card">
+  <div v-if="!removed" class="food-card">
     <div class="banner-image">
-      <img :src="imageUrl" />
+      <img :src="props.food.imageUrl" />
     </div>
     <div class="food-details">
-      <h3>{{ props.food.attributes.Name }}</h3>
-      <p>Ksh.{{ props.food.attributes.Price * count }}</p>
+      <h3>{{ props.food.name }}</h3>
+      <p>Ksh.{{ props.food.price * count }}</p>
     </div>
     <div class="order-controls">
+      <button v-if="isCartPage" @click="removeFromCart">remove</button>
       <div class="quantity-control">
         <button :disabled="count==1" @click="countInCart(-1)">-</button>
         <span>{{count}}</span>

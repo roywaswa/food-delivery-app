@@ -1,15 +1,15 @@
 <script setup>
+import FoodCard from '../components/FoodCard.vue';
 
 const cartItems = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
-console.log(cartItems);
-
 </script>
 
 <template>
-  <h1>CART</h1>
-  <div :key="item.id" v-for="item in cartItems" class="cartitem">
-    <h4>{{item.name}}</h4>
-    <p>{{item.quantity}} at Ksh.{{item.price}}</p>
+  <div class="page">
+    <div class="page-title">
+      <h3>CART</h3>
+    </div>
+    <FoodCard :key="food.id" v-for="food in cartItems" :food="food" />
   </div>
 </template>
 
