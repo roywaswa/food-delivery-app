@@ -12,8 +12,6 @@ const register = () => {
     .then((res) => console.log(res))
     .catch(error.value = "Error registering user");
 }
-
-
 </script>
 
 <template>
