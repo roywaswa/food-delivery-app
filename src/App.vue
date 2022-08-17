@@ -1,21 +1,27 @@
-<script>
-import { defineComponent, onMounted } from 'vue'
+<script setup>
+import { onAuthStateChanged } from '@firebase/auth';
+import { auth } from './app/auth.methods';
+import { useAuthStore } from './app/store.pinia'
 import FooterSection from './components/FooterSection.vue'
 import HeaderSection from './components/HeaderSection.vue'
 
-export default defineComponent({
-  setup() {
-    
-    },
-  
-  components: { HeaderSection, FooterSection }
-})
+const authStore = useAuthStore()
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    authStore.$patch({storeUser: user})
+  }
+}, error => {
+  console.log(error);
+});
+
+
 </script>
 
 <template>
-  <header-section />
+  <HeaderSection />
   <router-view />
-  <footer-section />
+  <FooterSection />
 </template>
 
 <style scoped>

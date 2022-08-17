@@ -1,5 +1,6 @@
 <script setup>
-import { defineEmits, ref } from 'vue';
+import { ref } from 'vue';
+import { firebaseRegisterUser } from "../app/auth.methods";
 
 const error = ref(null);
 const email = ref("");
@@ -7,10 +8,10 @@ const password = ref("");
 const emit = defineEmits(["login"]);
 
 const register = () => {
-  console.log('signup');
+  firebaseRegisterUser(email.value, password.value)
+    .then((res) => console.log(res))
+    .catch(error.value = "Error registering user");
 }
-
-
 </script>
 
 <template>
