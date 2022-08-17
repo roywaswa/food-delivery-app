@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from "@vue/runtime-core";
 
+const error = ref(null);
 const email = ref("");
 const password = ref("");
-const authAction = ref("login");
+const emit = defineEmits(["register"]);
+
 const login = () => {
   console.log('signin');
 }
@@ -13,8 +15,10 @@ const login = () => {
 <template>
   <!-- LOG IN COMPONENT -->
   <div class="auth-login">
-    <h1>Login</h1>
     <form @submit.prevent="login">
+      <div class="error">
+        <div v-if="error" class="alert alert-danger">{{error}}</div>
+      </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" v-model="email" placeholder="Enter email">
@@ -25,7 +29,7 @@ const login = () => {
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <p>Don't have an account? <a href="#" @click="authAction = 'register'">Register</a></p>
+    <p>Don't have an account? <a href="#" @click="$emit('register')">Register</a></p>
   </div>
 </template>
 

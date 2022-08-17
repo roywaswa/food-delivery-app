@@ -37,7 +37,28 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  min-width: 250px;
 
+  &:focus {
+    border-color: #535bf2;
+  }
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
