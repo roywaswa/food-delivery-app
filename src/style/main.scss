@@ -1,3 +1,6 @@
+@import './partials/cssreset';
+
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -17,17 +20,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
+  color: inherit;
   text-decoration: inherit;
 }
 
@@ -36,9 +29,6 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -47,7 +37,28 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  outline: none;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  min-width: 250px;
 
+  &:focus {
+    border-color: #535bf2;
+  }
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -74,10 +85,20 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.page {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-title {
+  font-size: xx-large;
+  margin-block: 2rem;
 }
 
 @media (prefers-color-scheme: light) {
